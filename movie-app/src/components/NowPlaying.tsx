@@ -4,11 +4,7 @@ import { PlayIcon, StarIcon } from "./Icons";
 
 const NowPlaying = async () => {
   const movies = await getDataFromTMBD("/movie/now_playing");
-  return (
-    <div>
-      <CarouselSlide movies={movies} />
-    </div>
-  );
+  return <CarouselSlide movies={movies} />;
 };
 
 export default NowPlaying;

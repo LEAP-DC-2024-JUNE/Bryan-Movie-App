@@ -1,11 +1,24 @@
+import { getTrailerLink } from "@/utils/service";
 import { PlayIcon, StarIcon } from "./Icons";
+import YouTubeModal from "./TestModal";
+import { useEffect, useState } from "react";
 type Props = {
   imgSrc: string;
   title: string;
   description: string;
   rating: number;
+  id: number;
 };
-const CarouselCard = ({ imgSrc, title, description, rating }: Props) => {
+const CarouselCard = ({ imgSrc, title, description, rating, id }: Props) => {
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const get = async () => {
+      setKey(await getTrailerLink(id));
+    };
+
+    get();
+  }, []);
   return (
     <div>
       <img
@@ -37,16 +50,7 @@ const CarouselCard = ({ imgSrc, title, description, rating }: Props) => {
         <div>
           <p>{description}</p>
         </div>
-        <div>
-          <button
-            className="flex items-center justify-center gap-2
-                      bg-black dark:bg-[#18181B]
-                      text-white py-2 px-4 rounded-md "
-          >
-            <PlayIcon />
-            Watch Trailer
-          </button>
-        </div>
+        {key != "" && <YouTubeModal id={key} />}
       </div>
     </div>
   );

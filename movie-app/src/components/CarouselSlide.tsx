@@ -22,6 +22,7 @@ const CarouselSlide = ({ movies }: { movies: MovieType[] }) => {
               title={movie.original_title}
               description={movie.overview}
               rating={movie.vote_average}
+              id={movie.id}
             />
           </CarouselItem>
         ))}
